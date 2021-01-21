@@ -1,14 +1,6 @@
-[![Build Status](https://travis-ci.com/umd-memsys/DRAMsim3.svg?branch=master)](https://travis-ci.com/umd-memsys/DRAMsim3)
+# About DDR+HBM
 
-# About DRAMsim3
-
-DRAMsim3 models the timing paramaters and memory controller behavior for several DRAM protocols such as DDR3, DDR4, LPDDR3, LPDDR4, GDDR5, GDDR6, HBM, HMC, STT-MRAM. It is implemented in C++ as an objected oriented model that includes a parameterized DRAM bank model, DRAM controllers, command queues and system-level interfaces to interact with a CPU simulator (GEM5, ZSim) or trace workloads. It is designed to be accurate, portable and parallel.
-    
-If you use this simulator in your work, please consider cite:
-
-[1] S. Li, Z. Yang, D. Reddy, A. Srivastava and B. Jacob, "DRAMsim3: a Cycle-accurate, Thermal-Capable DRAM Simulator," in IEEE Computer Architecture Letters. [Link](https://ieeexplore.ieee.org/document/8999595)
-
-See [Related Work](#related-work) for more work done with this simulator.
+This project is a heterogeneous memory hybrid system based on [DRAMsim3](https://github.com/umd-memsys/DRAMsim3), which is a parallel architecture consisting of DDR and HBM.
 
 
 ## Building and running the simulator
@@ -49,8 +41,8 @@ By default, it also creates `libdramsim3.so` shared library in the project root 
 # Running random stream with a config file
 ./build/dramsim3main configs/DDR4_8Gb_x8_3200.ini --stream random -c 100000 
 
-# Running a trace file
-./build/dramsim3main configs/DDR4_8Gb_x8_3200.ini -c 100000 -t sample_trace.txt
+# Running a trace file（这里我们要增加一个configs/HBMxxx.ini参数）
+./build/dramsim3main configs/DDR4_8Gb_x8_3200.ini HBM1_4Gb_x128.ini -c 100000 -t sample_trace.txt
 
 # Running with gem5
 --mem-type=dramsim3 --dramsim3-ini=configs/DDR4_4Gb_x4_2133.ini
@@ -140,19 +132,4 @@ Run
 To generage Verilog workbench.
 Our workbench format is compatible with ModelSim Verilog simulator,
 other Verilog simulators may require a slightly different format.
-
-
-## Related Work
-
-[1] Li, S., Yang, Z., Reddy D., Srivastava, A. and Jacob, B., (2020) DRAMsim3: a Cycle-accurate, Thermal-Capable DRAM Simulator, IEEE Computer Architecture Letters.
-
-[2] Jagasivamani, M., Walden, C., Singh, D., Kang, L., Li, S., Asnaashari, M., ... & Yeung, D. (2019). Analyzing the Monolithic Integration of a ReRAM-Based Main Memory Into a CPU's Die. IEEE Micro, 39(6), 64-72.
-
-[3] Li, S., Reddy, D., & Jacob, B. (2018, October). A performance & power comparison of modern high-speed DRAM architectures. In Proceedings of the International Symposium on Memory Systems (pp. 341-353).
-
-[4] Li, S., Verdejo, R. S., Radojković, P., & Jacob, B. (2019, September). Rethinking cycle accurate DRAM simulation. In Proceedings of the International Symposium on Memory Systems (pp. 184-191).
-
-[5] Li, S., & Jacob, B. (2019, September). Statistical DRAM modeling. In Proceedings of the International Symposium on Memory Systems (pp. 521-530).
-
-[6] Li, S. (2019). Scalable and Accurate Memory System Simulation (Doctoral dissertation).
 
